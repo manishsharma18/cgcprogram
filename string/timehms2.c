@@ -9,13 +9,6 @@ void main()
 	scanf("%d",&n);
 	getchar();
 
-/*	for(i=0;i<n;i++)
-	{
-		printf("Enter user %d time using pipe(HH|MM|SS) : \n",i+1);
-		scanf("%[^\n]s",time[i]);
-		getchar();
-	}
-*/
 	for(i=0;i<n;i++)
 	{
 		printf("Enter user %d time using pipe(HH|MM|SS) : \n",i+1);
@@ -29,11 +22,27 @@ void main()
 			t[j++]=atoi(token);
 			token=strtok(NULL,"|");
 		}
-		if(t[0]<t[3])
+		for(j=0;j<3;j++)
+		{
+
+		if(t[j]<t[j+3])
+		{
 			printf("Early\n");
-		else if(t[0]>t[3])
+			break;
+		}
+		else if(t[j]>t[j+3])
+		{
 			printf("Late\n");
-		else
+			break;
+		}
+		else if(j==2 && t[j]==t[j+3])
+			printf("Same\n");
+	
+		
+		}
+	}
+}
+		/*	else
 		{
 			if(t[1]<t[4])
 	                        printf("Early\n");
@@ -49,9 +58,7 @@ void main()
 					printf("Same\n");
 			}
 		}
-	}
-}
-
-
+	*/
+	
 
 
