@@ -6,6 +6,7 @@
 #include "loggers.h"
 #include "server_functions.h"
 
+// Function to display the contents of a file
 void displayFileContent(char* filePath, char* result) {
     LOG_INFO("Reading contents of file - %s", filePath);
     FILE* file = fopen(filePath, "r");

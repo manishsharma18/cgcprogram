@@ -6,6 +6,7 @@
 #include "loggers.h"
 #include "server_functions.h"
 
+// Function to search for a file in the filesystem
 void searchForFile(char* filePath, char* result) {
     LOG_INFO("Searching for a file in filesystem with filePath - %s", filePath);
     FILE* file = fopen(filePath, "r");

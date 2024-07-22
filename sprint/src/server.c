@@ -11,6 +11,7 @@
 int main() {
 
     LOG_INFO("Creating Socket %s", "");
+    // Create a TCP socket
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {
         LOG_FATAL("Socket creation failed %s\n", "");
@@ -30,18 +31,20 @@ int main() {
     }
 
     LOG_INFO("Listening for incoming connections %s", "");
+    // listening for connections
     if (listen(serverSocket, 5) == -1) {
         LOG_FATAL("Listen failed %s", "");
         exit(EXIT_FAILURE);
     }
 
     LOG_INFO("Server listening on port %s...", "8888");
+    // Accept incoming connection
     int clientSocket = accept(serverSocket, NULL, NULL);
     if (clientSocket == -1) {
         LOG_FATAL("Accept failed %s", "");
     }
 
-    // Accept connections
+    // Accept connections and handle client requests
     while (1) {
 
         // Receive client choice
@@ -54,13 +57,13 @@ int main() {
 
         switch (choice) {
 
-            case 1:
+            case 1:							// Search for file
                 recv(clientSocket, buffer, sizeof(buffer), 0);
                 searchForFile(buffer, result);
                 send(clientSocket, result, sizeof(result), 0);
                 break;
 
-            case 2:
+            case 2:							 // Search for string in filesystem
                 recv(clientSocket, buffer, sizeof(buffer), 0);
                 searchForString(buffer, result);
                 send(clientSocket, result, sizeof(result), 0);
@@ -76,7 +79,7 @@ int main() {
                 send(clientSocket, result, sizeof(result), 0);
                 break;
 
-            case 3:
+            case 3:							// Display file content
                 recv(clientSocket, buffer, sizeof(buffer), 0);
                 displayFileContent(buffer, result);
                 send(clientSocket, result, sizeof(result), 0);

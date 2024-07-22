@@ -42,7 +42,7 @@ int main() {
         send(clientSocket, &choice, sizeof(choice), 0);
 
         switch (choice) {
-            case 1: ;
+            case 1: ;								// Search for a file
                 int case1SubChoice = 0;
                 printf("    1. Enter with path\n");
                 printf("    2. Enter without path\n");
@@ -52,7 +52,7 @@ int main() {
                 char basePath[MAX_BUFFER_SIZE] = "";
                 printf("Enter the required information: ");
                 if (case1SubChoice == 2) {
-                    strcat(basePath, "/home2/user17");
+                    strcat(basePath, "/home2/user17/cgcprogram/sprint/data");
                 }
                 scanf("%s", buffer);
                 strcat(basePath, buffer);
@@ -60,7 +60,7 @@ int main() {
                 recv(clientSocket, buffer, sizeof(buffer), 0);
                 printf("Server response:\n%s\n", buffer);
                 break;
-            case 2:
+            case 2:								// Search for a string in the filesystem
                 printf("Enter the required information: ");
                 getchar();
                 scanf("%[^\n]s", buffer);
@@ -87,7 +87,7 @@ int main() {
                     send(clientSocket, "", sizeof(buffer), 0);
                 }
                 break;
-            case 3:
+            case 3:								//  Display the content of a file
                 printf("Enter the required information: ");
                 getchar();
                 scanf("%[^\n]s", buffer);
