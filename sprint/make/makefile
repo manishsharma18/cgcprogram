@@ -46,4 +46,3 @@ $(BINDIR):
 # Clean target
 clean:
 	rm -rf $(OBJDIR)/*.o $(BINDIR)/server $(BINDIR)/client
-
